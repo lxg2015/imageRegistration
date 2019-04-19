@@ -7,5 +7,10 @@ message(${OpenCV_LIBRARIES})
 
 set(CMAke_CXX_FLAGS -std=c++11)
 
-add_executable(${PROJECT_NAME} main.cpp match.cpp gms.cpp)
+set(SRC src/main.cpp
+        src/gms.cpp
+        src/match.cpp
+        src/tool.cpp)
+
+add_executable(${PROJECT_NAME} ${SRC})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
