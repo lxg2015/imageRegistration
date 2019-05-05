@@ -21,7 +21,6 @@ public:
 
 private:
     int num_area;
-    int num_points;
     int method; // CV_RANSAC or CV_LMEDS(least median robust method Ransac > 50%) RHO algorithm ?
     double outlier_thresh; // ransac reproject error threshold 3
     size_t max_iter; // ransac max iters maxium=2000

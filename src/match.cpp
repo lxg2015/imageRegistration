@@ -1,6 +1,8 @@
 #include "match.h"
 #include "gms.h"
+#include "tool.h"
 #include <iostream>
+#include <map>
 
 using namespace cv;
 using namespace std;
@@ -8,7 +10,6 @@ using namespace std;
 enum FEATURE {surf, orb};
 
 Match::Match(){
-    num_points = 10;
     method = CV_LMEDS; //CV_RANSAC; 
     outlier_thresh = 2;
     max_iter = 600;
@@ -18,6 +19,12 @@ Match::Match(){
     distance_thresh = 0.2; 
 
     FEATURE flg = orb;
+    map<string, float> mv;
+    
+    load_config("./config.yaml", mv);
+    if(mv["feature"] == 0){
+        flg = surf;
+    }
 
     if(flg == surf){
         feature = xfeatures2d::SURF::create(400); // 海塞矩阵阈值，越大特征越明显
